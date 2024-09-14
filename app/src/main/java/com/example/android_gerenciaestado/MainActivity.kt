@@ -43,9 +43,9 @@ class MainActivity : ComponentActivity() {
 //                        var contador by remember { mutableIntStateOf(0) }
                         val viewModel by viewModels<ContadorViewModel>()
                         val contador by viewModel.contador.collectAsState()
-                        ContadorStateless(contador, onIncrementContador = {viewModel.incrementar()}, modifier = Modifier.padding(innerPadding))
-                        ContadorStateless(contador, onIncrementContador = {viewModel.incrementar()}, modifier = Modifier.padding(innerPadding))
-                        ContadorStateless(contador, onIncrementContador = {viewModel.decrementar()}, modifier = Modifier.padding(innerPadding))
+                        ContadorStateless(contador, onIncrementContador = {viewModel.incrementar()}, texto = "Incremente", modifier = Modifier.padding(innerPadding))
+                        ContadorStateless(contador, onIncrementContador = {viewModel.incrementar()}, texto = "Incremente", modifier = Modifier.padding(innerPadding))
+                        ContadorStateless(contador, onIncrementContador = {viewModel.decrementar()}, texto = "Decremente", modifier = Modifier.padding(innerPadding))
                     }
                 }
             }
@@ -54,14 +54,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ContadorStateless(contador: Int, onIncrementContador: () -> Unit, modifier: Modifier = Modifier) {
+fun ContadorStateless(contador: Int, onIncrementContador: () -> Unit, texto: String, modifier: Modifier = Modifier) {
 
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = "Contador: $contador"
         )
         Button(onClick = onIncrementContador) {
-            Text("Altere aqui")
+            Text("$texto aqui")
 
         }
 
